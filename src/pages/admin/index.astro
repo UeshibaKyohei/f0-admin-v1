@@ -1,0 +1,70 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import Chart from '../../components/Chart.astro';
+
+interface Stat {
+  label: string;
+  value: string;
+}
+
+interface Order {
+  id: string;
+  status: string;
+  total: string;
+}
+
+const stats: Stat[] = [
+  { label: 'Users', value: '1,234' },
+  { label: 'Revenue', value: '$56k' },
+  { label: 'Orders', value: '890' },
+];
+
+const orders: Order[] = [
+  { id: '#1001', status: 'Processing', total: '$120' },
+  { id: '#1002', status: 'Shipped', total: '$86' },
+  { id: '#1003', status: 'Delivered', total: '$42' },
+];
+---
+
+<AdminLayout>
+  <div class="grid gap-4 lg:grid-cols-3">
+    <div class="space-y-4 lg:col-span-1">
+      {stats.map((s) => (
+        <div class="stats bg-base-100 shadow" aria-label={s.label}>
+          <div class="stat">
+            <div class="stat-title">{s.label}</div>
+            <div class="stat-value">{s.value}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="lg:col-span-2">
+      <Chart />
+    </div>
+  </div>
+  <div class="mt-4 card bg-base-100 shadow">
+    <div class="card-body">
+      <h2 class="card-title">Recent Orders</h2>
+      <div class="overflow-x-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Status</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((o) => (
+              <tr>
+                <td>{o.id}</td>
+                <td>{o.status}</td>
+                <td>{o.total}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</AdminLayout>

@@ -1,0 +1,18 @@
+---
+import "../assets/app.css";
+import AdminSidebar from '../components/AdminSidebar.astro';
+import AdminHeader from '../components/AdminHeader.astro';
+---
+<div class="drawer lg:drawer-open">
+  <input id="nav-drawer" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content flex flex-col min-h-screen">
+    <AdminHeader />
+    <main class="flex-1 overflow-y-auto p-6">
+      <slot />
+    </main>
+  </div>
+  <div class="drawer-side">
+    <label for="nav-drawer" class="drawer-overlay" aria-label="close sidebar"></label>
+    <AdminSidebar />
+  </div>
+</div>

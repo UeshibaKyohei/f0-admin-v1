@@ -1,0 +1,44 @@
+---
+const menu = [
+  { icon: 'home', label: 'ダッシュボード', href: '#' },
+  { icon: 'user', label: 'ユーザー', href: '#' },
+  { icon: 'cog', label: '設定', href: '#' },
+];
+const icons = {
+  home: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7m-9 2v7m4-7v7m5 0H5" />',
+  user: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A4 4 0 018 16h8a4 4 0 012.879 1.804M15 11a3 3 0 100-6 3 3 0 000 6z" />',
+  cog: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.983 4.036l.928-1.89a2 2 0 113.62 0l.928 1.89a9.034 9.034 0 012.902 1.527l1.95-.79a2 2 0 012.391 1.304l.533 2.001a9.042 9.042 0 01.002 4.286l-.533 2a2 2 0 01-2.391 1.306l-1.95-.792a9.034 9.034 0 01-2.902 1.528l-.928 1.89a2 2 0 01-3.62 0l-.928-1.89a9.034 9.034 0 01-2.902-1.528l-1.95.791a2 2 0 01-2.39-1.305l-.534-2.001a9.042 9.042 0 010-4.286l.534-2a2 2 0 012.39-1.306l1.95.792a9.034 9.034 0 012.902-1.528zM12 15a3 3 0 100-6 3 3 0 000 6z" />',
+};
+---
+<div class="flex">
+  <input id="collapse" type="checkbox" class="peer sr-only" />
+  <aside class="bg-base-200 peer-checked:w-16 w-64 transition-all flex flex-col">
+    <div class="flex items-center justify-between px-4 py-3">
+      <span class="text-xl font-bold label peer-checked:hidden">MyLogo</span>
+      <label for="collapse" aria-label="toggle sidebar" class="btn btn-square btn-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5" /></svg>
+      </label>
+    </div>
+    <ul class="menu px-2 flex-1">
+      {menu.map(item => (
+        <li>
+          <a href={item.href} class="gap-2">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" set:html={icons[item.icon]}></svg>
+            <span class="label peer-checked:hidden">{item.label}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="border-t p-4">
+      <div class="flex items-center gap-2">
+        <div class="avatar">
+          <div class="w-8 rounded-full bg-neutral text-neutral-content">YT</div>
+        </div>
+        <div class="label peer-checked:hidden">
+          <p class="font-semibold">山田 太郎</p>
+          <p class="text-sm opacity-60">Admin</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
